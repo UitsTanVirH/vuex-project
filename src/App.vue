@@ -1,26 +1,41 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <base-container title="Vuex">
+    <h3>{{ $store.getters.finalCounter }}</h3>
+    <favourite-value/>
+    <button @click="addOne">add 1</button>
+    <change-counter/>
+  </base-container>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BaseContainer from './components/BaseContainer.vue';
+import ChangeCounter from './components/ChangeCounter.vue';
+import FavouriteValue from './components/FavouriteValue.vue';
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    BaseContainer,
+    ChangeCounter,
+    FavouriteValue,
+  },
+  methods: {
+    addOne() {
+      this.$store.commit('increment');
+    }
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
 }
 </style>
